@@ -24,30 +24,34 @@
                                                 <th>Status</th>
                                             </tr>
                                         </thead>
-                                        
+                                        {{--
                                         @foreach($roadmaps as $roadmap)
                                         <tbody>
                                             <tr>
                                                 <td>{{$roadmap->id}}</td>
                                                 <td>{{$roadmap->name}}</td>
-                                                <td>{!! Str::limit($roadmap->description, 10, ' ...') !!}</td>
+                                                <td>{{$roadmap->description}}</td>
                                                 <td>{{$roadmap->features}}</td>
                                                 <td>{{$roadmap->milestones}}</td>
                                                 <td>{{$roadmap->goals}}</td>
                                                 
                                                 <td>
                                                     @if($roadmap->status == 'done')
-                                                    <span  class="tag tag-success">{{$roadmap->status}}</span>
+                                                    <span  class="tag tag-success">Delivered</span>
                                                     @elseif($roadmap->status == 'draft')
-                                                    <span  class="tag tag-warning">{{$roadmap->status}}</span>
+                                                    <span  class="tag tag-orange">Delivered</span>
                                                     @else 
-                                                    <span  class="tag tag-orange">{{$roadmap->status}}</span>
+                                                    <span  class="tag tag-warning">Delivered</span>
                                                     @endif
                                                 </td>
                                             </tr>
-                                    </tbody>
+                                            
+                                            
+                                           
+                                            
+                                        </tbody>
                                         @endforeach
-                                        
+                                        --}}
                                     </table>
                                 </div>
                             </div>
@@ -57,3 +61,5 @@
             </div>
         </div>
 @stop
+
+

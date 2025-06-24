@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Models\Roadmaps;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,7 +13,9 @@ class HomeController extends Controller
      */
     public function home()
     {
-        //die('test');
-        return view('home.index');
+        $roadmaps = Roadmaps::orderBy('name', 'asc')->get();
+        //dd($roadmaps);
+        return view('home.index')->withRoadmaps($roadmaps);
+        //return view('home.index');
     }
 }

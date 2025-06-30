@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
 
 <title>:: Roadmap :: Project Dashboard</title>
 
 <!-- Bootstrap Core and vandor -->
-<link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css" />
 <!-- Core css -->
-<link rel="stylesheet" href="css/main.css"/>
-<link rel="stylesheet" href="css/theme1.css"/>
+<link rel="stylesheet" href="/css/main.css"/>
+<link rel="stylesheet" href="/css/theme1.css"/>
 </head>
 
 <body class="font-montserrat">

@@ -29,7 +29,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>{{$roadmap->id}}</td>
-                                                <td>{{$roadmap->name}}</td>
+                                                <td><a href="{{ route('roadmap.show', $roadmap->id) }}">{{$roadmap->name}}</a></td>
                                                 <td>{!! Str::limit($roadmap->description, 10, ' ...') !!}</td>
                                                 <td>{{$roadmap->features}}</td>
                                                 <td>{{$roadmap->milestones}}</td>

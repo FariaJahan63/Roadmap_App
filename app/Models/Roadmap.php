@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Roadmaps extends Model
+class Roadmap extends Model
 {
     protected $table = 'roadmaps';
 }

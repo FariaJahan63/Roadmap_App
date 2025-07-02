@@ -7,9 +7,9 @@
       margin: 30px;
     }
 
-    #comment-section {
+    .comment-section {
       max-width: 600px;
-      margin: auto;
+      margin-top: 40px;
     }
 
     textarea, input[type="text"] {
@@ -29,6 +29,11 @@
       padding: 10px;
       margin-top: 10px;
       border-radius: 5px;
+    }
+
+    .vote-section{
+        margin-top: 10px;
+        float: right;
     }
 
     .meta {
@@ -66,133 +71,61 @@
                                                     @endif
 
                                  
-  <div id="vote-section">
-    <button id="vote-button">Vote</button>
-    <button id="unvote-button" disabled>Unvote</button>
-    <p id="vote-count">Votes: 0</p>
-  </div> 
+  <div class="vote-section">
+    @if ($selfVote)
+        <form action="{{ route('roadmap.unvote') }}" method="POST">
+            @csrf
+            <button name="unvote" type="submit" value="{{ $roadmap->id }}">Unvote</button>
+        </form>
+    @else
+        <form action="{{ route('roadmap.vote') }}" method="POST">
+            @csrf
+            <button name="vote" type="submit" value="{{ $roadmap->id }}" >Vote</button>
+        </form>
+    @endif
+
+    <p id="vote-count">Votes: {{ $voteCount ?? 0 }}</p>
+</div>
+
   
   <!-- Comment Section -->
-  <div id="comment-section">
+<div class="comment-section">
     <h2>Leave a Comment</h2>
-    <input type="text" id="name-input" placeholder="Your Name" />
-    <textarea id="comment-input" rows="4" placeholder="Write your comment here..."></textarea>
-    <button id="submit-comment">Submit Comment</button>
 
-    <div id="comments">
-      <h3>Comments:</h3>
+    {{-- Top-level comment form --}}
+    <form action="{{ route('roadmap.comment') }}" method="POST">
+        @csrf
+        <input type="hidden" name="roadmap_id" value="{{ $roadmap->id }}">
+        <textarea name="comment" rows="4" placeholder="Write your comment here..." required></textarea>
+        <button type="submit">Submit Comment</button>
+    </form>
+
+    <div id="comments" class="mt-4">
+        <h3>Comments:</h3>
+
+        @foreach($comments->where('parent_id', null) as $comment)
+            @include('components.comment', ['comment' => $comment])
+        @endforeach
     </div>
-  </div>
+</div>
+
+
+ 
     <script>
-    let votes = 0;
-    let hasVoted = false;
-
-    const voteBtn = document.getElementById('vote-button');
-    const unvoteBtn = document.getElementById('unvote-button');
-    const voteDisplay = document.getElementById('vote-count');
-
-    voteBtn.addEventListener('click', function () {
-      if (!hasVoted) {
-        votes++;
-        hasVoted = true;
-        voteDisplay.textContent = `Votes: ${votes}`;
-        voteBtn.disabled = true;
-        unvoteBtn.disabled = false;
-      }
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.reply-toggle').forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                const id = this.dataset.commentId;
+                const form = document.getElementById(`reply-form-${id}`);
+                form.classList.toggle('hidden');
+            });
+        });
     });
+</script>
 
-    unvoteBtn.addEventListener('click', function () {
-      if (hasVoted) {
-        votes--;
-        hasVoted = false;
-        voteDisplay.textContent = `Votes: ${votes}`;
-        voteBtn.disabled = false;
-        unvoteBtn.disabled = true;
-      }
-    });
-const nameInput = document.getElementById('name-input');
-    const commentInput = document.getElementById('comment-input');
-    const submitBtn = document.getElementById('submit-comment');
-    const commentsDiv = document.getElementById('comments');
 
-    function createCommentElement(name, text, timestamp = new Date(), isReply = false) {
-      const commentEl = document.createElement('div');
-      commentEl.className = 'comment';
-
-      const metaEl = document.createElement('div');
-      metaEl.className = 'meta';
-      metaEl.textContent = `${name} • ${timestamp.toLocaleString()}`;
-
-      const textEl = document.createElement('p');
-      textEl.textContent = text;
-
-      const buttonsDiv = document.createElement('div');
-
-      // Edit button
-      const editBtn = document.createElement('button');
-      editBtn.textContent = 'Edit';
-      editBtn.addEventListener('click', () => {
-        const newText = prompt('Edit your comment:', textEl.textContent);
-        if (newText !== null) {
-          textEl.textContent = newText;
-        }
-      });
-
-      // Delete button
-      const deleteBtn = document.createElement('button');
-      deleteBtn.textContent = 'Delete';
-      deleteBtn.addEventListener('click', () => {
-        if (confirm('Are you sure you want to delete this comment?')) {
-          commentEl.remove();
-        }
-      });
-
-      // Reply button
-      const replyBtn = document.createElement('button');
-      replyBtn.textContent = 'Reply';
-      replyBtn.addEventListener('click', () => {
-        const replyName = prompt('Your Name:');
-        if (!replyName) return;
-        const replyText = prompt('Your Reply:');
-        if (!replyText) return;
-        const reply = createCommentElement(replyName, replyText);
-        repliesContainer.appendChild(reply);
-      });
-
-      buttonsDiv.appendChild(editBtn);
-      buttonsDiv.appendChild(deleteBtn);
-      buttonsDiv.appendChild(replyBtn);
-
-      const repliesContainer = document.createElement('div');
-      repliesContainer.className = 'replies';
-
-      commentEl.appendChild(metaEl);
-      commentEl.appendChild(textEl);
-      commentEl.appendChild(buttonsDiv);
-      commentEl.appendChild(repliesContainer);
-
-      return commentEl;
-    }
-
-    submitBtn.addEventListener('click', () => {
-      const name = nameInput.value.trim();
-      const text = commentInput.value.trim();
-
-      if (name === '' || text === '') {
-        alert('Please enter both name and comment.');
-        return;
-      }
-
-      const comment = createCommentElement(name, text);
-      commentsDiv.appendChild(comment);
-
-      // Clear inputs
-      nameInput.value = '';
-      commentInput.value = '';
-    });
-
-    
-  </script>                    
+                 
                                     
                                 </div>
                             </div>

@@ -32,11 +32,17 @@
     </div>
 
     <div class="page">
+            @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+            </div>
+            @endif
+
         <div id="page_top" class="section-body top_dark">
             <div class="container-fluid">
                 <div class="page-header">
                     <div class="left">
-                        <h1 class="page-title">Dashboard</h1>                        
+                        <h1 class="page-title"> <a href="/">Dashboard</a></h1>                        
                     </div>
                     
                 </div>

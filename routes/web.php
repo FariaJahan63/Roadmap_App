@@ -15,6 +15,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'home'])->name('home');
     Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
     Route::get('/roadmap/{id}/view', [RoadmapController::class, 'show'])->name('roadmap.show');
+    Route::post('/roadmap/vote', [RoadmapController::class, 'vote'])->name('roadmap.vote');
+    Route::post('/roadmap/unvote', [RoadmapController::class, 'unvote'])->name('roadmap.unvote');
+    Route::post('/roadmap/comment', [RoadmapController::class, 'storeComment'])->name('roadmap.comment');
+    Route::post('/roadmap/reply', [RoadmapController::class, 'storeReply'])->name('roadmap.reply');
+
     Route::get('/logout', [CustomLoginController::class, 'logout'])->name('logout');
 });
 

@@ -1,25 +1,46 @@
-# Laravel + Vue Starter Kit
+# Roadmap App
 
-## Introduction
+A Laravel-based web application that allows users to explore, upvote, comment, and reply to educational and career roadmaps. It features user authentication, voting/unvoting, nested comments (up to 2 replies), and more.
 
-Our Vue starter kit provides a robust, modern starting point for building Laravel applications with a Vue frontend using [Inertia](https://inertiajs.com).
+---
 
-Inertia allows you to build modern, single-page Vue applications using classic server-side routing and controllers. This lets you enjoy the frontend power of Vue combined with the incredible backend productivity of Laravel and lightning-fast Vite compilation.
+## Features
 
-This Vue starter kit utilizes Vue 3 and the Composition API, TypeScript, Tailwind, and the [shadcn-vue](https://www.shadcn-vue.com) component library.
+- User authentication (login/register)
+- Vote and unvote functionality (one vote per user per roadmap)
+- Comment system with nested replies (max 2 replies per comment)
+- Roadmap browsing and interaction
+- Admin/database seeding support
 
-## Official Documentation
+---
 
-Documentation for all Laravel starter kits can be found on the [Laravel website](https://laravel.com/docs/starter-kits).
+## Getting Started
 
-## Contributing
+Follow the steps below to run the project on your local environment.
 
-Thank you for considering contributing to our starter kit! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+### Prerequisites
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Ensure you have the following installed:
 
-## License
+- PHP >= 8.1
+- Composer
+- Node.js & npm
+- MySQL
+- Laravel 12+
 
-The Laravel + Vue starter kit is open-sourced software licensed under the MIT license.
+---
+
+###  Installation Instructions
+Run composer  install to install all the packages.
+Run npm install to install all npm packages.
+Run npm run build to build the frontend.
+Run php artisan:migrate to create the tables.
+Run php artisan db:seed to create existing roadmaps.
+
+#### 1. Clone the Repository
+
+```bash
+git clone https://github.com/FariaJahan63/Roadmap_App.git
+cd roadmap-app

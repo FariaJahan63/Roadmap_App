@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('roadmap_id')->constrained('roadmaps')->onDelete('cascade');
             $table->timestamps();

@@ -6,13 +6,29 @@ A Laravel-based web application that allows users to explore, upvote, comment, a
 
 ## Features
 
-- User authentication (login/register)
-- Vote and unvote functionality (one vote per user per roadmap)
-- Comment system with nested replies (max 2 replies per comment)
-- Roadmap browsing and interaction
-- Admin/database seeding support
+ User Authentication
+Login/Signup: Users can register and log in using email and password via Laravel Breeze (or Jetstream). Built-in CSRF protection and validation ensure secure authentication.
 
----
+ Roadmap Display
+UI Design: A clean and minimal UI displays roadmap items with titles, statuses, and upvote counts.
+
+Filtering & Sorting: Roadmaps can be filtered or sorted by category (e.g., “In Progress,” “Completed”) and popularity (upvotes), making the experience user-centric and navigable.
+
+ Upvoting Feature
+Users can upvote roadmap items. Each user can upvote only once per item to maintain fairness.
+
+A toggle mechanism is implemented: if a user already voted, an "Unvote" option is shown instead.
+
+💬 Commenting System
+Add Comments: Users can leave feedback or ask questions on each roadmap item.
+
+
+🧵 Nested Replies
+Users can reply to comments, supporting up to 3 levels of nested replies (parent, child, grandchild).
+
+Visual indentation reflects the depth hierarchy, keeping the interface readable and organized.
+
+Reply forms appear dynamically via JavaScript when the user clicks “Reply.”
 
 ## Getting Started
 
@@ -28,7 +44,7 @@ Ensure you have the following installed:
 - Composer
 - Node.js & npm
 - MySQL
-- Laravel 12+
+- Laravel 12
 
 ---
 
